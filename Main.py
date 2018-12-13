@@ -1,9 +1,11 @@
 import tkinter as tk
 import random
+import threading
+from datetime import datetime
 
 root = tk.Tk()
-winWidth = 600
-winHeight = 500
+winWidth = 400
+winHeight = 400
 canvas = tk.Canvas(root, width=winWidth, height=winHeight)
 blackLine = canvas.create_line(10, 10, 50, 200)
 x = canvas.winfo_width()
@@ -30,6 +32,7 @@ class Main(tk.Frame):
         x = canvas.winfo_width()
         y = canvas.winfo_height()
         snakeBits.append(canvas.create_rectangle((winWidth/2) - 9, (winHeight/2) - 9, winWidth/2, winHeight/2, fill='blue'))
+        self.print_it()
         canvas.pack()
 
     def draw_black_line():
@@ -52,6 +55,11 @@ class Main(tk.Frame):
     @staticmethod
     def down_key(event):
         print("down", y)
+
+    @staticmethod
+    def print_it(self):
+        threading.Timer(5.0, printit).start()
+        print(datetime.now())
 
 xUnit = 200
 mainSnake = Main(root)
